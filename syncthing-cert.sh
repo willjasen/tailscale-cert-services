@@ -18,6 +18,10 @@ else
     echo "jq is installed, continuing...";
 fi;
 
+## Potential paths...
+# /home/willjasen/.local/state/syncthing
+# /mnt/tipi-app/runtipi/app-data/syncthing/data/config
+
 CONFIG_FILEPATH="/home/willjasen/.local/state/syncthing";
 CONFIG_FILE=$CONFIG_FILEPATH"/config.xml";
 if [ ! -f "$CONFIG_FILE" ]; then
