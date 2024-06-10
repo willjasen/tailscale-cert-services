@@ -22,3 +22,7 @@ sed -i "/<gui>/a \\
     $tls_key_file" "$CONFIG_FILE";
 
 echo "Tailscale TLS certificate and key paths added to Syncthing config.";
+
+echo "Outputting the lines for verification...";
+cat $CONFIG_FILE | grep "<tlsCertFile>";
+cat $CONFIG_FILE | grep "<tlsKeyFile>";
