@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ### This script updates Syncthing to use a Tailscale certificate
+### This is easy to do as the .crt/.key can be used by Syncthing without changing format
 
 source ./functions.sh
 
