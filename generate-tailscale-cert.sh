@@ -8,7 +8,7 @@ if ! command -v tailscale &> /dev/null; then
     echo "Tailscale is not installed - exiting script.";
     exit 1;
 else
-    echo "Tailscale is already installed, continuing...";
+    echo "Tailscale is installed, continuing...";
 fi;
 
 # Install jq if not installed
@@ -16,7 +16,7 @@ if ! command -v jq &> /dev/null; then
     echo "jq is not installed - installing...";
     apt update -qq; apt install jq -y;
 else
-    echo "jq is already installed, continuing...";
+    echo "jq is installed, continuing...";
 fi;
 
 # Variables
