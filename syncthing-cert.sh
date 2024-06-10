@@ -9,6 +9,11 @@ else
 fi;
 
 CONFIG_FILE="~/.local/state/syncthing/config.xml";
+if [ ! -f "$CONFIG_FILE" ]; then
+    echo "Syncthing config file does not exist at $CONFIG_FILE... exiting script."
+    exit 1
+fi;
+
 CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
 CERT_PATH="/etc/ssl/tailscale/"$CERT_NAME;
 
