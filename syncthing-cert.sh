@@ -30,7 +30,7 @@ tls_cert_file="<tlsCertFile>"$CERT_PATH".crt</tlsCertFile>";
 tls_key_file="<tlsKeyFile>"$CERT_PATH".key</tlsKeyFile>";
 
 # Use sed to insert the lines after the <gui> tag
-sed -i "/<gui>/a \\
+sed -i "/<gui[^>]*>/a \\
     $tls_cert_file\\
     $tls_key_file" "$CONFIG_FILE";
 
