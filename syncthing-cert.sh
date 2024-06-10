@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Exit if Syncthing is not installed already
+if ! command -v syncthing &> /dev/null; then
+    echo "Syncthing is not installed - exiting script.";
+    exit 1;
+else
+    echo "Syncthing is installed, continuing...";
+fi;
+
 # Install jq if not installed
 if ! command -v jq &> /dev/null; then
     echo "jq is not installed - installing...";
