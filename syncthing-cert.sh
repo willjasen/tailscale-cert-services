@@ -2,21 +2,13 @@
 
 ### This script updates Syncthing to use a Tailscale certificate
 
+source ./functions.sh
+
 # Exit if Syncthing is not installed already
-if ! command -v syncthing &> /dev/null; then
-    echo "Syncthing is not installed - exiting script.";
-    exit 1;
-else
-    echo "Syncthing is installed, continuing...";
-fi;
+is_syncthing_installed;
 
 # Install jq if not installed
-if ! command -v jq &> /dev/null; then
-    echo "jq is not installed - installing...";
-    apt update -qq; apt install jq -y;
-else
-    echo "jq is installed, continuing...";
-fi;
+if_jq;
 
 ## Potential paths...
 # /home/willjasen/.local/state/syncthing
