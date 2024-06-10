@@ -21,13 +21,15 @@ if [ ! -f "$CONFIG_FILE" ]; then
     echo "Syncthing config file does not exist at $CONFIG_FILE... exiting script."
     exit 1
 fi;
-
 CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
 CERT_PATH="/etc/ssl/tailscale/"$CERT_NAME;
 
 # Lines to be added
 tls_cert_file="<tlsCertFile>"$CERT_PATH".crt</tlsCertFile>";
 tls_key_file="<tlsKeyFile>"$CERT_PATH".key</tlsKeyFile>";
+
+# Use sed to change the "tls" key value within "gui" from "false" to "true"
+sed -i 's/\(<gui[^>]*tls="\)false"/\1true"/' "$CONFIG_FILE";
 
 # Use sed to insert the lines after the <gui> tag
 sed -i "/<gui[^>]*>/a \\
