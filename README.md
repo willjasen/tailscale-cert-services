@@ -5,4 +5,4 @@ manage common services with tailscale certificates
 - generate-tailscale-cert.sh
 
 #### Service specific scripts
-...
+- syncthing-cert.sh
