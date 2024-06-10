@@ -25,8 +25,15 @@ CERT_PATH="/etc/ssl/tailscale/"$CERT_NAME;
 
 # Check if the symbolic link points correctly
 if [ "$(readlink -f ${CONFIG_FILEPATH}"/https-cert.pem")" = ${CERT_PATH}".crt" ]; then
-    echo ${CONFIG_FILEPATH}"/https-cert.pem already points to " ${CERT_PATH}".crt";
-    exit 0;
+    echo ${CONFIG_FILEPATH}"/https-cert.pem already points to "${CERT_PATH}".crt";
+    if [ "$(readlink -f ${CONFIG_FILEPATH}"/https-key.pem")" = ${CERT_PATH}".key" ]; then
+        echo ${CONFIG_FILEPATH}"/https-key.pem already points to "${CERT_PATH}".key";
+        exit 0;
+    else
+        exit 1;
+    fi;
+else
+    exit 1;
 fi;
 
 # Use sed to change the "tls" key value within "gui" from "false" to "true"
