@@ -3,21 +3,13 @@
 ## This script generates a certificate from tailscale into $CERT_DIR
 ## and sets up a cron job to renew it once per month
 
+source ./functions.sh;
+
 # Exit if Tailscale is not installed already
-if ! command -v tailscale &> /dev/null; then
-    echo "Tailscale is not installed - exiting script.";
-    exit 1;
-else
-    echo "Tailscale is installed, continuing...";
-fi;
+is_tailscale_installed;
 
 # Install jq if not installed
-if ! command -v jq &> /dev/null; then
-    echo "jq is not installed - installing...";
-    apt update -qq; apt install jq -y;
-else
-    echo "jq is installed, continuing...";
-fi;
+if_jq;
 
 # Variables
 CERT_DIR=/etc/ssl/tailscale;
