@@ -37,6 +37,7 @@ ln -s ${CERT_PATH}".crt" ${CONFIG_FILEPATH}"/https-cert.pem";
 ln -s ${CERT_PATH}".key" ${CONFIG_FILEPATH}"/https-key.pem";
 
 # Restart the syncthing service
+echo "Restarting the Syncthing service...";
 systemctl restart syncthing@*.service;
 
 echo "Tailscale certificate for Syncthing has been updated.";
