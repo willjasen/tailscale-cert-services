@@ -16,7 +16,7 @@ else
     echo "jq is installed, continuing...";
 fi;
 
-CONFIG_FILE="~/.local/state/syncthing/config.xml";
+CONFIG_FILE="/home/willjasen/.local/state/syncthing/config.xml";
 if [ ! -f "$CONFIG_FILE" ]; then
     echo "Syncthing config file does not exist at $CONFIG_FILE... exiting script."
     exit 1
