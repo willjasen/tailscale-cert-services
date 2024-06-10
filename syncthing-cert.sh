@@ -23,6 +23,14 @@ fi;
 CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
 CERT_PATH="/etc/ssl/tailscale/"$CERT_NAME;
 
+# Check if the symbolic link points correctly
+if [ "$(readlink -f ${CONFIG_FILEPATH}"/https-cert.pem")" = ${CERT_PATH}".crt" ]; then
+    echo ${CONFIG_FILEPATH}"/https-cert.pem already points to " ${CERT_PATH}".crt";
+    exit 0;
+else
+    # do nothing
+fi
+
 # Use sed to change the "tls" key value within "gui" from "false" to "true"
 sed -i 's/\(<gui[^>]*tls="\)false"/\1true"/' "$CONFIG_FILE";
 
