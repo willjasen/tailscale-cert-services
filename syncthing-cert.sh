@@ -1,5 +1,7 @@
 #!/bin/bash
 
+### This script updates Syncthing to use a Tailscale certificate
+
 # Exit if Syncthing is not installed already
 if ! command -v syncthing &> /dev/null; then
     echo "Syncthing is not installed - exiting script.";
