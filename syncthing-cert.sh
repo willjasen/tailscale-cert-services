@@ -34,22 +34,7 @@ rm ${CONFIG_FILEPATH}"/https-key.pem";
 ln -s ${CERT_PATH}".crt" ${CONFIG_FILEPATH}"/https-cert.pem";
 ln -s ${CERT_PATH}".key" ${CONFIG_FILEPATH}"/https-key.pem";
 
-# Restart syncthing service
-# ...
+# Restart the syncthing service
+systemctl restart syncthing@*.service;
 
-
-### ---------
-# Lines to be added
-#tls_cert_file="<tlsCertFile>"$CERT_PATH".crt</tlsCertFile>";
-#tls_key_file="<tlsKeyFile>"$CERT_PATH".key</tlsKeyFile>";
-
-# Use sed to insert the lines after the <gui> tag
-#sed -i "/<gui[^>]*>/a \\
-#    $tls_cert_file\\
-#    $tls_key_file" "$CONFIG_FILE";
-
-#echo "Tailscale TLS certificate and key paths added to Syncthing config.";
-
-#echo "Outputting the lines for verification...";
-#cat $CONFIG_FILE | grep "<tlsCertFile>";
-#cat $CONFIG_FILE | grep "<tlsKeyFile>";
+echo "Tailscale certificate for Syncthing has been updated.";
