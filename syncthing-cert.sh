@@ -8,7 +8,7 @@ source ./functions.sh
 is_syncthing_installed;
 
 # Install jq if not installed
-if_jq;
+is_jq_installed;
 
 ## Potential paths...
 # /home/willjasen/.local/state/syncthing

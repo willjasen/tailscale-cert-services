@@ -3,7 +3,7 @@
 ### Functions are within here
 
 # Exit if Tailscale is not installed already
-is_tailscale_installed () {  
+is_tailscale_installed () {
   if ! command -v tailscale &> /dev/null; then
     echo "Tailscale is not installed - exiting script.";
     exit 1;
@@ -13,7 +13,7 @@ is_tailscale_installed () {
 };
 
 # Install jq if not installed
-if_jq () {
+is_jq_installed () {
   if ! command -v jq &> /dev/null; then
     echo "jq is not installed - installing...";
     apt update -qq; apt install jq -y;

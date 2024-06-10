@@ -9,7 +9,7 @@ source ./functions.sh;
 is_tailscale_installed;
 
 # Install jq if not installed
-if_jq;
+is_jq_installed;
 
 # Variables
 CERT_DIR=/etc/ssl/tailscale;
@@ -20,7 +20,7 @@ CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
 USER_FOR_PERMISSION=willjasen;
 
 # Generate Tailscale certificate
-# Access is given to the 
+# Access is given to the
 mkdir -p $CERT_DIR;
 cd $CERT_DIR;
 tailscale cert "${CERT_NAME}";
