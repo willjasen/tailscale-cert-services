@@ -13,11 +13,11 @@ is_jq_installed;
 
 # Variables
 CERT_DIR=/etc/ssl/tailscale;
-CERT_SCRIPT=/opt/generate-tailscale-cert.sh;
+CERT_SCRIPT=/opt/tailscale-cert-services/generate-tailscale-cert.sh;
 THIS_SCRIPT_PATH=$(realpath "$0");
 CRON_JOB="0 4 1 * * $CERT_SCRIPT";
 CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
-USER_FOR_PERMISSION=willjasen;
+if [[ $USER == "root" ]]; then USER_FOR_PERMISSION=root; else USER_FOR_PERMISSION=willjasen; fi;
 
 # Generate Tailscale certificate
 # Access is given to the user specified
