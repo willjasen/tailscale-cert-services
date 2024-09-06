@@ -21,7 +21,7 @@ if [[ $USER == "root" ]]; then USER_FOR_PERMISSION=root; else USER_FOR_PERMISSIO
 
 # Generate Tailscale certificate
 # Access is given to the user specified
-echo "Generating Tailscale certificate for "$CERT_NAME;
+echo "Attempting to generate Tailscale certificate for "$CERT_NAME;
 mkdir -p $CERT_DIR;
 cd $CERT_DIR;
 tailscale cert "${CERT_NAME}";
