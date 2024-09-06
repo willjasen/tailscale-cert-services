@@ -31,6 +31,7 @@ chown $USER_FOR_PERMISSION:$USER_FOR_PERMISSION $CERT_NAME".key";
 # Setup cron schedule
 # This cron schedule happens at 3:00 am on the first of every month
 # cp $THIS_SCRIPT_PATH $CERT_SCRIPT;
-chmod u+x $CERT_SCRIPT;
+# chmod u+x $CERT_SCRIPT;
+echo "Checking crontab... ";
 (crontab -l | grep -F "$CRON_JOB") || (crontab -l;
 echo "$CRON_JOB") | crontab -;
