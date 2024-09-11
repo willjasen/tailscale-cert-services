@@ -12,12 +12,12 @@ is_tailscale_installed;
 is_jq_installed;
 
 # Variables
-CERT_DIR=/etc/ssl/tailscale;
-CERT_SCRIPT=/opt/tailscale-cert-services/generate-tailscale-cert.sh;
-THIS_SCRIPT_PATH=$(realpath "$0");
-CRON_JOB="0 4 1 * * $CERT_SCRIPT";
-CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
-if [[ $USER == "root" ]]; then USER_FOR_PERMISSION=root; else USER_FOR_PERMISSION=willjasen; fi;
+export CERT_DIR=/etc/ssl/tailscale;
+export CERT_SCRIPT=/opt/tailscale-cert-services/generate-tailscale-cert.sh;
+export THIS_SCRIPT_PATH=$(realpath "$0");
+export CRON_JOB="0 4 1 * * $CERT_SCRIPT";
+export CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
+if [[ $USER == "root" ]]; then export USER_FOR_PERMISSION=root; else export USER_FOR_PERMISSION=willjasen; fi;
 
 # Generate Tailscale certificate
 # Access is given to the user specified
@@ -35,3 +35,4 @@ chown $USER_FOR_PERMISSION:$USER_FOR_PERMISSION $CERT_NAME".key";
 echo "Checking crontab... ";
 (crontab -l | grep -F "$CRON_JOB") || (crontab -l;
 echo "$CRON_JOB") | crontab -;
+
