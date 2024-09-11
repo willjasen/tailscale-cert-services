@@ -31,3 +31,13 @@ is_syncthing_installed () {
     echo "Syncthing is installed, continuing...";
   fi;
 };
+
+# Exit if Proxmox is not installed
+is_proxmox_installed () {
+  if ! command -v pveproxy &> /dev/null; then
+    echo "Proxmox is not installed - exiting script.";
+    exit 1;
+  else
+    echo "Proxmox is installed, continuing...";
+  fi;
+};
