@@ -12,5 +12,5 @@ is_proxmox_installed;
 ./generate-tailscale-cert.sh
 
 # Set the certificate
-CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
-pvenode cert set "/etc/ssl/tailscale/${CERT_NAME}.crt" "/etc/ssl/tailscale/${CERT_NAME}.key" --force --restart
+TS_HOST_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
+pvenode cert set "/etc/ssl/tailscale/${TS_HOST_NAME}.crt" "/etc/ssl/tailscale/${TS_HOST_NAME}.key" --force --restart
