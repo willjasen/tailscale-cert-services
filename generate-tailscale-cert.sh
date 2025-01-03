@@ -28,6 +28,9 @@ tailscale cert "${CERT_NAME}";
 chown $USER_FOR_PERMISSION:$USER_FOR_PERMISSION $CERT_NAME".crt";
 chown $USER_FOR_PERMISSION:$USER_FOR_PERMISSION $CERT_NAME".key";
 
+# Make a PFX
+make_pfx;
+
 # Setup cron schedule
 # This cron schedule happens at 3:00 am on the first of every month
 # cp $THIS_SCRIPT_PATH $CERT_SCRIPT;
