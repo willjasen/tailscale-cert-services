@@ -42,8 +42,13 @@ is_proxmox_installed () {
   fi;
 };
 
+# Define color variables
+GREEN="\033[0;32m"
+NC="\033[0m" # No Color
+
 # Update this repo
 update_repo () {
+  echo -e "${GREEN}Updating the repository...${NC}"
   cd /opt/tailscale-cert-services;
   git pull;
 };
