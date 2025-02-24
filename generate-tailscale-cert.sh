@@ -3,8 +3,8 @@
 ## This script generates a certificate from tailscale into $CERT_DIR
 ## and sets up a cron job to renew it on the first of the month at 3 am
 
-update_repo;
 source ./functions.sh;
+update_repo;
 
 # Exit if Tailscale is not installed already
 is_tailscale_installed;
