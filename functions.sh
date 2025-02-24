@@ -42,6 +42,12 @@ is_proxmox_installed () {
   fi;
 };
 
+# Update this repo
+update_repo () {
+  cd /opt/tailscale-cert-services;
+  git pull;
+};
+
 # Make a PFX of the certificate and key files
 make_pfx () {
 
