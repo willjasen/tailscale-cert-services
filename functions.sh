@@ -6,6 +6,10 @@ if [ "$(pwd)" != "/opt/tailscale-cert-services" ]; then
   exit 1
 fi
 
+# Define color variables
+GREEN="\033[0;32m"
+NC="\033[0m" # No Color
+
 # Exit if Tailscale is not installed already
 is_tailscale_installed () {
   if ! command -v tailscale &> /dev/null; then
@@ -45,10 +49,6 @@ is_proxmox_installed () {
     echo "Proxmox is installed, continuing...";
   fi;
 };
-
-# Define color variables
-GREEN="\033[0;32m"
-NC="\033[0m" # No Color
 
 # Update this repo
 update_repo () {
