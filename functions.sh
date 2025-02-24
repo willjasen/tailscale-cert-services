@@ -1,6 +1,10 @@
 #!/bin/sh
 
-### Functions are within here
+# Check if the script is being run from the correct directory
+if [ "$(pwd)" != "/opt/tailscale-cert-services" ]; then
+  echo "Please run this script from /opt/tailscale-cert-services."
+  exit 1
+fi
 
 # Exit if Tailscale is not installed already
 is_tailscale_installed () {
