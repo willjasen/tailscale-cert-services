@@ -5,6 +5,7 @@
 
 source ./functions.sh;
 update_repo;
+source ./functions.sh;
 
 # Exit if Tailscale is not installed already
 is_tailscale_installed;
