@@ -16,7 +16,7 @@ is_jq_installed;
 export CERT_DIR=/etc/ssl/tailscale;
 export CERT_SCRIPT=/opt/tailscale-cert-services/generate-tailscale-cert.sh;
 export THIS_SCRIPT_PATH=$(realpath "$0");
-export CRON_JOB="0 4 1 * * cd /opt/tailscale-cert-services; git pull; $CERT_SCRIPT;";
+export CRON_JOB="0 4 1 * * $CERT_SCRIPT;";
 export CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
 if [[ $USER == "root" ]]; then export USER_FOR_PERMISSION=root; else export USER_FOR_PERMISSION=willjasen; fi;
 
