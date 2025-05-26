@@ -21,6 +21,8 @@ export CRON_JOB="0 4 1 * * $CERT_SCRIPT;";
 export CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
 if [[ $USER == "root" ]]; then export USER_FOR_PERMISSION=root; else export USER_FOR_PERMISSION=willjasen; fi;
 
+
+
 # Generate Tailscale certificate
 # Access is given to the user specified
 echo "Attempting to generate Tailscale certificate for "$CERT_NAME;
@@ -33,7 +35,8 @@ chown $USER_FOR_PERMISSION:$USER_FOR_PERMISSION $CERT_NAME".key";
 # Make a PFX
 make_pfx;
 
-# Setup cron schedule
-# This cron schedule happens at 4:00 am on the first of every month
-echo "Checking crontab... ";
-(crontab -l | grep -F "$CRON_JOB") || (crontab -l; echo "$CRON_JOB") | crontab -;
+# Check for --renewal parameter
+if [[ "$1" == "--schedule-renewal" ]]; then
+    echo "Scheduling Tailscale certificate renewal...";
+    ./schedule-renewal.sh --tailscale
+fi
