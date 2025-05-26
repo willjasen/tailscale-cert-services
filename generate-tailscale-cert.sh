@@ -27,7 +27,7 @@ chown $USER_FOR_PERMISSION:$USER_FOR_PERMISSION $CERT_NAME".crt";
 chown $USER_FOR_PERMISSION:$USER_FOR_PERMISSION $CERT_NAME".key";
 
 # Make a PFX
-make_pfx;
+# make_pfx;
 
 # Check for --renewal parameter
 if [[ "$1" == "--schedule-renewal" ]]; then
