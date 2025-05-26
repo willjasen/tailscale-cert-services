@@ -14,3 +14,7 @@ is_proxmox_installed;
 # Set the certificate
 TS_HOST_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
 pvenode cert set "/etc/ssl/tailscale/${TS_HOST_NAME}.crt" "/etc/ssl/tailscale/${TS_HOST_NAME}.key" --force --restart
+
+# Schedule renewal for Proxmox
+echo "Scheduling Proxmox certificate renewal...";
+./schedule-renewal.sh --proxmox;
