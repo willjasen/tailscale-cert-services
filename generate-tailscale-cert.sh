@@ -36,5 +36,4 @@ make_pfx;
 # Setup cron schedule
 # This cron schedule happens at 4:00 am on the first of every month
 echo "Checking crontab... ";
-(crontab -l | grep -F "$CRON_JOB") || (crontab -l;
-echo "$CRON_JOB") | crontab -;
+(crontab -l | grep -F "$CRON_JOB") || (crontab -l; echo "$CRON_JOB") | crontab -;
