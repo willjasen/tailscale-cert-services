@@ -19,8 +19,6 @@ export CRON_JOB="0 4 1 * * $CERT_SCRIPT;";
 export CERT_NAME="$(tailscale status --json | jq '.Self.DNSName | .[:-1]' -r)";
 if [[ $USER == "root" ]]; then export USER_FOR_PERMISSION=root; else export USER_FOR_PERMISSION=willjasen; fi;
 
-
-
 # Generate Tailscale certificate
 # Access is given to the user specified
 echo "Attempting to generate Tailscale certificate for "$CERT_NAME;
