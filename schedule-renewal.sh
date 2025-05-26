@@ -8,8 +8,6 @@ if [ -z "$1" ]; then
   exit 1
 fi
 
-source ./functions.sh;
-
 # Set CERT_SCRIPT based on parameter
 case "$1" in
   --tailscale)
@@ -24,6 +22,8 @@ case "$1" in
     exit 1
     ;;
 esac
+
+source ./functions.sh;
 
 # Setup cron schedule
 # This cron schedule happens at 4:00 am on the first of every month
