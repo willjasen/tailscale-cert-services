@@ -2,13 +2,13 @@
 
 ### This script handles the scheduling of a Tailscale certificate renewal via cron
 
-source ./functions.sh;
-
 # Check for required parameter
 if [ -z "$1" ]; then
   echo "Usage: $0 [--tailscale|--proxmox]"
   exit 1
 fi
+
+source ./functions.sh;
 
 # Set CERT_SCRIPT based on parameter
 case "$1" in
