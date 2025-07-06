@@ -27,6 +27,6 @@ source ./functions.sh;
 
 # Setup cron schedule
 # This cron schedule happens at 4:00 am on the first of every month
-export CRON_JOB="0 4 1 * * $CERT_SCRIPT;"
+export CRON_JOB="0 4 1 * * cd /opt/tailscale-cert-services && git pull && $CERT_SCRIPT"
 echo "Checking crontab... "
 (crontab -l | grep -F "$CRON_JOB") || (crontab -l; echo "$CRON_JOB") | crontab -;
